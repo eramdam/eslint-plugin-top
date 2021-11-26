@@ -1,5 +1,5 @@
 import {Rule} from 'eslint';
-import {isTopLevel} from '../../helpers';
+import {isTopLevel} from '../helpers';
 
 export const noTopLevelVariables: Rule.RuleModule = {
   meta: {
@@ -22,12 +22,13 @@ export const noTopLevelVariables: Rule.RuleModule = {
     ]
   },
   create: (context) => {
-    const options = context.options[0] || {};
+    const options = context.options[0] || {
+      kind: ['const', 'let', 'var']
+    };
 
     return {
       VariableDeclaration: (node) => {
-        const defaultKindMatching = node.kind === 'const' || node.kind === 'let' || node.kind === 'var';
-        const isMatching = options.kind ? Array.from(options.kind).includes(node.kind) : defaultKindMatching;
+        const isMatching = Array.from(options.kind).includes(node.kind);
 
         if (isMatching) {
           if (isTopLevel(node)) {
