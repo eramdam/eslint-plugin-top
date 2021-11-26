@@ -13,7 +13,8 @@
     "build": "rollup --config rollup.config.ts",
     "prepublishOnly": "npm run build",
     "lint": "eslint .",
-    "test": "mocha tests --recursive"
+    "test": "mocha tests --recursive",
+    "test:watch": "npm run test -- --watch"
   },
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "^5.4.0",

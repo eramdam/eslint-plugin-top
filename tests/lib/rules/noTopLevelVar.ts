@@ -33,6 +33,18 @@ new RuleTester({
           const foo = 'bar';
         }
       `
+    },
+    {
+      code: `
+        const foo = 'bar';
+        export default function () {
+        }
+      `,
+      options: [
+        {
+          kind: ['var']
+        }
+      ]
     }
   ],
   invalid: [
@@ -60,9 +72,15 @@ new RuleTester({
     },
     {
       code: `
+        var foobar = 'bar';
         const foo = 'bar';
         export default function () {}
       `,
+      options: [
+        {
+          kind: ['var']
+        }
+      ],
       errors: [
         {
           messageId: 'message'
