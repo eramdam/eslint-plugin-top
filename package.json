@@ -11,6 +11,7 @@
   "main": "lib/index.js",
   "scripts": {
     "build": "rollup --config rollup.config.ts",
+    "prepublishOnly": "npm run build",
     "lint": "eslint .",
     "test": "mocha tests --recursive"
   },
