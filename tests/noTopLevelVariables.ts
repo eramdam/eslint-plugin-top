@@ -1,5 +1,6 @@
 import * as parser from '@typescript-eslint/parser';
 import {RuleTester} from 'eslint';
+import {trimTestCases} from '../lib/helpers';
 import {noTopLevelVariables} from '../lib/rules/noTopLevelVariables';
 
 const valid: RuleTester.ValidTestCase[] = [
@@ -90,16 +91,6 @@ new RuleTester({
     }
   }
 }).run('no-top-level-variables', noTopLevelVariables, {
-  valid: valid.map((c) => {
-    return {
-      ...c,
-      code: c.code.trim()
-    };
-  }),
-  invalid: invalid.map((c) => {
-    return {
-      ...c,
-      code: c.code.trim()
-    };
-  })
+  valid: valid.map(trimTestCases),
+  invalid: invalid.map(trimTestCases)
 });

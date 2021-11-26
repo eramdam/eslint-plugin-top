@@ -1,3 +1,4 @@
+import {noTopLevelSideEffect} from './rules/noTopLevelSideEffect';
 import {noTopLevelVariables} from './rules/noTopLevelVariables';
 
 /**
@@ -6,5 +7,6 @@ import {noTopLevelVariables} from './rules/noTopLevelVariables';
  */
 
 export const rules = {
-  'no-top-level-variables': noTopLevelVariables
+  'no-top-level-variables': noTopLevelVariables,
+  'no-top-level-side-effect': noTopLevelSideEffect
 };
