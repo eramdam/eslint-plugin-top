@@ -1,0 +1,47 @@
+{
+  "name": "eslint-plugin-nosideeffect-top",
+  "version": "0.0.0",
+  "description": "Disallow side effects at the top level of files",
+  "keywords": [
+    "eslint",
+    "eslintplugin",
+    "eslint-plugin"
+  ],
+  "author": "Damien Erambert",
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "rollup --config rollup.config.ts",
+    "lint": "eslint .",
+    "test": "mocha tests --recursive"
+  },
+  "dependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.4.0",
+    "requireindex": "^1.2.0"
+  },
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^13.0.6",
+    "@types/eslint": "^8.2.0",
+    "@typescript-eslint/parser": "^5.4.0",
+    "@wessberg/rollup-plugin-ts": "^1.3.14",
+    "eslint": "^8.0.1",
+    "eslint-plugin-eslint-plugin": "^4.0.1",
+    "eslint-plugin-node": "^11.1.0",
+    "mocha": "^9.1.3",
+    "prettier": "^2.5.0",
+    "rollup": "^2.60.1",
+    "ts-node": "^10.4.0",
+    "tslib": "^2.3.1",
+    "typescript": "^4.5.2"
+  },
+  "engines": {
+    "node": "12.x || 14.x || >= 16"
+  },
+  "peerDependencies": {
+    "eslint": ">=6"
+  },
+  "license": "ISC",
+  "directories": {
+    "lib": "lib",
+    "test": "tests"
+  }
+}
