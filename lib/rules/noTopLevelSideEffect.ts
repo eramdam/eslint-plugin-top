@@ -35,8 +35,17 @@ export const noTopLevelSideEffect: Rule.RuleModule = {
             node.expression.left.type === 'MemberExpression' &&
             node.expression.left.object.type === 'Identifier' &&
             node.expression.left.object.name === 'module';
+          const isExportsAssignment =
+            node.expression.type === 'AssignmentExpression' &&
+            node.expression.left.type === 'Identifier' &&
+            node.expression.left.name === 'exports';
+          const isExportPropertyAssignment =
+            node.expression.type === 'AssignmentExpression' &&
+            node.expression.left.type === 'MemberExpression' &&
+            node.expression.left.object.type === 'Identifier' &&
+            node.expression.left.object.name === 'exports';
 
-          if (!isIIFE && !isModuleAssignment) {
+          if (!isIIFE && !isModuleAssignment && !isExportsAssignment && !isExportPropertyAssignment) {
             context.report({
               node,
               messageId: 'message'
