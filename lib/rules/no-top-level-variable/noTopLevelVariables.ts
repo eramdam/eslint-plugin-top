@@ -1,5 +1,5 @@
 import {Rule} from 'eslint';
-import {isTopLevel} from '../helpers';
+import {isTopLevel} from '../../helpers';
 
 export const noTopLevelVariables: Rule.RuleModule = {
   meta: {

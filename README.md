@@ -22,25 +22,22 @@ Add `nosideeffect-top` to the plugins section of your `.eslintrc` configuration 
 
 ```json
 {
-    "plugins": [
-        "nosideeffect-top"
-    ]
+  "plugins": ["nosideeffect-top"]
 }
 ```
-
 
 Then configure the rules you want to use under the rules section.
 
 ```json
 {
-    "rules": {
-        "nosideeffect-top/rule-name": 2
-    }
+  "rules": {
+    "nosideeffect-top/no-top-level-variables": 2,
+    "nosideeffect-top/no-top-level-side-effect": 2
+  }
 }
 ```
 
 ## Supported Rules
 
-* Fill in provided rules here
-
-
+- `no-top-level-variables`
+- `no-top-level-side-effect`
