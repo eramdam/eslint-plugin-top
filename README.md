@@ -1,4 +1,4 @@
-# eslint-plugin-nosideeffect-top
+# eslint-plugin-top
 
 Disallow side effects at the top level of files
 
@@ -10,19 +10,19 @@ You'll first need to install [ESLint](https://eslint.org/):
 npm i eslint --save-dev
 ```
 
-Next, install `eslint-plugin-nosideeffect-top`:
+Next, install `eslint-plugin-top`:
 
 ```sh
-npm install eslint-plugin-nosideeffect-top --save-dev
+npm install eslint-plugin-top --save-dev
 ```
 
 ## Usage
 
-Add `nosideeffect-top` to the plugins section of your `.eslintrc` configuration file. You can omit the `eslint-plugin-` prefix:
+Add `top` to the plugins section of your `.eslintrc` configuration file. You can omit the `eslint-plugin-` prefix:
 
 ```json
 {
-  "plugins": ["nosideeffect-top"]
+  "plugins": ["top"]
 }
 ```
 
@@ -31,8 +31,8 @@ Then configure the rules you want to use under the rules section.
 ```json
 {
   "rules": {
-    "nosideeffect-top/no-top-level-variables": 2,
-    "nosideeffect-top/no-top-level-side-effect": 2
+    "top/no-top-level-variables": 2,
+    "top/no-top-level-side-effect": 2
   }
 }
 ```
