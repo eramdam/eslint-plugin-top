@@ -13,6 +13,7 @@ export const noTopLevelVariables: Rule.RuleModule = {
         properties: {
           kind: {
             type: 'array',
+            minItems: 1,
             items: {
               enum: ['const', 'let', 'var']
             }
@@ -29,8 +30,12 @@ export const noTopLevelVariables: Rule.RuleModule = {
     return {
       VariableDeclaration: (node) => {
         const isMatching = Array.from(options.kind).includes(node.kind);
+        const isRequire =
+          node.declarations[0].init?.type === 'CallExpression' &&
+          node.declarations[0].init.callee.type === 'Identifier' &&
+          node.declarations[0].init.callee.name === 'require';
 
-        if (isMatching) {
+        if (isMatching && !isRequire) {
           if (isTopLevel(node)) {
             context.report({node, messageId: 'message'});
           }

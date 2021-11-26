@@ -27,6 +27,11 @@ const valid: RuleTester.ValidTestCase[] = [
   },
   {
     code: `
+      const path = require('path');
+    `
+  },
+  {
+    code: `
       const foo = 'bar';
       export default function () {
       }
