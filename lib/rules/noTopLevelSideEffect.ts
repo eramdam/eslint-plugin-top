@@ -1,6 +1,17 @@
 import {Rule} from 'eslint';
 import {isTopLevel} from '../helpers';
 
+function sideEffect(context: Rule.RuleContext) {
+  return (node: Rule.Node) => {
+    if (isTopLevel(node)) {
+      context.report({
+        node,
+        messageId: 'message'
+      });
+    }
+  };
+}
+
 export const noTopLevelSideEffect: Rule.RuleModule = {
   meta: {
     type: 'problem',
@@ -19,7 +30,13 @@ export const noTopLevelSideEffect: Rule.RuleModule = {
                 node.expression.callee.type === 'FunctionExpression')
           );
 
-          if (!isIIFE) {
+          const isModuleAssignment =
+            node.expression.type === 'AssignmentExpression' &&
+            node.expression.left.type === 'MemberExpression' &&
+            node.expression.left.object.type === 'Identifier' &&
+            node.expression.left.object.name === 'module';
+
+          if (!isIIFE && !isModuleAssignment) {
             context.report({
               node,
               messageId: 'message'
@@ -27,38 +44,10 @@ export const noTopLevelSideEffect: Rule.RuleModule = {
           }
         }
       },
-      IfStatement: (node) => {
-        if (isTopLevel(node)) {
-          context.report({
-            node,
-            messageId: 'message'
-          });
-        }
-      },
-      ForStatement: (node) => {
-        if (isTopLevel(node)) {
-          context.report({
-            node,
-            messageId: 'message'
-          });
-        }
-      },
-      WhileStatement: (node) => {
-        if (isTopLevel(node)) {
-          context.report({
-            node,
-            messageId: 'message'
-          });
-        }
-      },
-      SwitchStatement: (node) => {
-        if (isTopLevel(node)) {
-          context.report({
-            node,
-            messageId: 'message'
-          });
-        }
-      }
+      IfStatement: sideEffect(context),
+      ForStatement: sideEffect(context),
+      WhileStatement: sideEffect(context),
+      SwitchStatement: sideEffect(context)
     };
   }
 };

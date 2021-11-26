@@ -15,6 +15,11 @@ const valid: RuleTester.ValidTestCase[] = [
     code: `
     export function foobar() {}
     `
+  },
+  {
+    code: `
+      module.exports = {}
+    `
   }
 ];
 
